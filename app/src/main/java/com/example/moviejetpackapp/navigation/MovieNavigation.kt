@@ -1,5 +1,6 @@
 package com.example.moviejetpackapp.navigation
 
+import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
@@ -9,6 +10,7 @@ import androidx.navigation.navArgument
 import com.example.moviejetpackapp.screens.home.DetailsScreen
 import com.example.moviejetpackapp.screens.home.HomeScreen
 
+@ExperimentalAnimationApi
 @Composable
 fun MovieNavigation() {
     val navController = rememberNavController()
@@ -26,7 +28,7 @@ fun MovieNavigation() {
         ) { backStackEntry ->
             DetailsScreen(
                 navController = navController,
-                backStackEntry.arguments?.getString("movie")
+                movieId =backStackEntry.arguments?.getString("movie")
             )
         }
 
