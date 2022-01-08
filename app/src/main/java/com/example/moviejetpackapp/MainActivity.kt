@@ -28,9 +28,7 @@ class MainActivity : ComponentActivity() {
             MovieJetpackAppTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(color = MaterialTheme.colors.background) {
-                    MyApp(
-                        MovieNavigation()
-                    )
+                    MyApp()
                 }
             }
         }
@@ -38,72 +36,11 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun MyApp(movieNavigation: Unit) {
+fun MyApp() {
+    MovieNavigation()
 
-    Scaffold(
-        topBar = {
-            TopAppBar {
-                Text(text = "Movies")
-            }
-        }
-    ) {
-        MainContent()
-
-    }
-}
-
-@Composable
-fun MainContent(movieList: List<String> = listOf("a", "b", "c", "d","e","f","g","h")) {
-
-    LazyColumn {
-        items(items = movieList) {
-            MovieRow(movie = it){movie ->
-                Log.d("Tag","MainContent : $movie")
-
-
-            }
-        }
-    }
 
 }
-
-@Composable
-fun MovieRow(movie: String, onItemClick: (String) -> Unit) {
-    Card(
-        modifier = Modifier
-            .padding(4.dp)
-            .fillMaxWidth()
-            .height(130.dp)
-            .clickable {
-                onItemClick(movie)
-
-            },
-        shape = RoundedCornerShape(corner = CornerSize(16.dp)),
-        elevation = 6.dp,
-    ) {
-        Row(
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.Start
-        ) {
-
-            Surface(
-                modifier = Modifier
-                    .padding(12.dp)
-                    .size(100.dp),
-                shape = RectangleShape,
-                elevation = 4.dp
-            ) {
-                Icon(imageVector = Icons.Default.AccountBox,
-                    contentDescription ="Moive Image")
-            }
-            Text(text = movie)
-
-        }
-    }
-
-}
-
-
 
 
 
